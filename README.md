@@ -1,18 +1,18 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12803332&assignment_repo_type=AssignmentRepo)
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 
-# << Project Title >>
-## CS110 Final Project  << Semester, Year >>
+# Snake game
+## CS110 Final Project  fall, 2023
 
-## Team Members
+## team members
 
-<< List team member names >>
+Aidan Clarke, Kylie
 
 ***
 
 ## Project Description
 
-<< Give an overview of your project >>
+our project is going to consist of a start screen to choose a background, color of the snake, and color of the apples. our goal is to create a working snake game in which you are able to customize what you want. as the snake eats apples, it grows, and you beat the game by covering the entire board with the snake
 
 ***    
 
