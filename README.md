@@ -6,13 +6,13 @@
 
 ## team members
 
-Aidan Clarke, Kylie
+Aidan Clarke, Kylie Robertson
 
 ***
 
 ## Project Description
 
-our project is going to consist of a start screen to choose a background, color of the snake, and color of the apples. our goal is to create a working snake game in which you are able to customize what you want. as the snake eats apples, it grows, and you beat the game by covering the entire board with the snake
+ Our project is going to consist of a start screen to choose a background, color of the snake, and color of the apples. Our goal is to create a working snake game in which you are able to customize the experience. As the snake eats apples, it grows, and you beat the game by covering the entire board with the snake.
 
 ***    
 
@@ -30,11 +30,11 @@ our project is going to consist of a start screen to choose a background, color 
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. Moveable snake character
+2. Customizable colors (snake, background, and apples)
+3. Start menu with options
+4. Win screen + Game over screen
+5. Visible point count and win count
 
 ### Classes
 
