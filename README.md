@@ -57,4 +57,41 @@ Test Case 1: Snake Movement
     9. Verify that the snake moves right.
     Expected Outcome: The snake should move up, down, left, or right based on the arrow key inputs.
 
+Test Case 2: Menu Navigation
+
+    Test Description: Test the options avaliable on the game's main / start menu.
+    Test Steps:
+    1. Start the game.
+    2. Navigate through the start menu options, including start game, quit, and color options.
+    3. Verify that each option is clickable and leads to the named action.
+    Expected Outcome: The start menu should allow the player to easily and understandable navigate through the avaliable options.
+
+Test Case 3: Point Count
+
+    Test Description: Verify that the point count is displayed in a readable and accurate manner.
+    Test Steps:
+    1. Start the game.
+    2. Check for readable point counter in top corner.
+    3. Each time an apple is collected, verify that the point count increases by 1.
+    Expected Outcome: The point counter will be visible in the corner of the screen, increasing by 1 with each apple that is collected.
+
+Test Case 4: Game Over Screen
+
+    Test Description: Test that when the conditions for a game over are met, the game over screen displays.
+    Test Steps:
+    1. Start the game.
+    2. Play until the snake collides with the wall or itself.
+    3. Verify that the game over screen appears.
+    Expected Outcome: When game over conditions are met, the game over screen will display.
+
+Test Case 5: Win Screen
+
+    Test Description: Test that when the game is won, the win screen displays.
+    Test Steps:
+    1. Start the game.
+    2. Play until the game is won by covering the entire screen with the snake.
+    3. Verify that the win screen appears.
+    Expected Outcome: When the game is won, the win screen displays.
+
+
 
