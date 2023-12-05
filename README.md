@@ -42,4 +42,19 @@ Aidan Clarke, Kylie Robertson
 
 ## ATP
 
+Test Case 1: Snake Movement
+
+    Test Description: Verify that the snake moves up, down, left, and right as predicted.
+    Test Steps:
+    1. Start the game.
+    2. Press the up arrow key.
+    3. Verify that the snake moves upwards.
+    4. Press the down arrow key.
+    5. Verify that the snake moves downwards.
+    6. Press the left arrow key.
+    7. Verify that the snake moves left.
+    8. Press the right arrow key.
+    9. Verify that the snake moves right.
+    Expected Outcome: The snake should move up, down, left, or right based on the arrow key inputs.
+
 
