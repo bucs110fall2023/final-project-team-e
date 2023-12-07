@@ -16,11 +16,26 @@ class Controller:
     self.color_apple = "red"
     self.clock = pygame.time.Clock()
     self.game_over_choice = False
-    
+    self.start_screen_choice = True
   def mainloop(self):
-    
+    self.startscreenloop()
     self.gameloop()
 
+  def startscreenloop(self):
+    start_screen = True
+    while start_screen:
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          pygame.quit()
+          quit()
+        if event.type == pygame.KEYDOWN:
+          start_screen = False
+      self.display.fill("black")
+      font_style = pygame.font.SysFont(None, 50)
+      message("Press any key to start", "white", self.width/2, self.height/2)
+      pygame.display.update()
+
+  
   #def menuloop(self):
     
       #event loop
