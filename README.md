@@ -2,9 +2,9 @@
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 
 # Snake game
-## CS110 Final Project  fall, 2023
+## CS110 Final Project  Fall, 2023
 
-## team members
+## Team Members
 
 Aidan Clarke, Kylie Robertson
 
@@ -12,7 +12,7 @@ Aidan Clarke, Kylie Robertson
 
 ## Project Description
 
- Our project is going to consist of a start screen to choose a background, color of the snake, and color of the apples. Our goal is to create a working snake game in which you are able to customize the experience. As the snake eats apples, it grows, and you beat the game by covering the entire board with the snake.
+ Our project is going to consist of a start screen to choose the color of the snake, and the type of fruit. Our goal is to create a working snake game in which you are able to customize the experience. As the snake eats apples, it grows. If the game collides with the walls of the screen, the game is over.
 
 ***    
 
@@ -24,21 +24,36 @@ Aidan Clarke, Kylie Robertson
 
 ### Final Design
 
-![final gui](assets/finalgui.jpg)
+![final gui start screen](assets/finalgui.jpg)
+![final gui options screen](assets/finalgui2.jpg)
 
 ## Program Design
 
 ### Features
 
 1. Moveable snake character
-2. Customizable colors (snake, background, and apples)
-3. Start menu with options
-4. Win screen + Game over screen
-5. Visible point count and win count
+2. Customizable colors (snake and apples) on options screen
+3. Start menu
+4. Game over screen
+5. Visible point count
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
+Class 1: Controller
+
+    Provides the main content for the program.
+
+Class 2: Apple
+
+    Provides the code to create the fruit according to outside perimeters.
+
+Class 3: Snake
+
+    Provides the code to create the rectangle that forms the snake according to outside perimeters.
+
+Class 4: Message
+
+    Provides the format to create text on screen.
 
 ## ATP
 
@@ -57,14 +72,16 @@ Test Case 1: Snake Movement
     9. Verify that the snake moves right.
     Expected Outcome: The snake should move up, down, left, or right based on the arrow key inputs.
 
-Test Case 2: Menu Navigation
+Test Case 2: Option Menu Navigation
 
-    Test Description: Test the options avaliable on the game's main / start menu.
+    Test Description: Test the options avaliable on the game's option menu
     Test Steps:
     1. Start the game.
-    2. Navigate through the start menu options, including start game, quit, and color options.
-    3. Verify that each option is clickable and leads to the named action.
-    Expected Outcome: The start menu should allow the player to easily and understandable navigate through the avaliable options.
+    2. Click "options" in the top corner of the start menu.
+    3. Navigate through the option menu, clicking a color option for both the snake and the fruit.
+    4. Return to the start menu.
+    5. Verify that the color change is reflected when starting the game.
+    Expected Outcome: The option menu should allow the player to select the color of their snake and the type of fruit.
 
 Test Case 3: Point Count
 
@@ -72,7 +89,7 @@ Test Case 3: Point Count
     Test Steps:
     1. Start the game.
     2. Check for readable point counter in top corner.
-    3. Each time an apple is collected, verify that the point count increases by 1.
+    3. Each time a fruit is collected, verify that the point count increases by 1.
     Expected Outcome: The point counter will be visible in the corner of the screen, increasing by 1 with each apple that is collected.
 
 Test Case 4: Game Over Screen
@@ -80,18 +97,18 @@ Test Case 4: Game Over Screen
     Test Description: Test that when the conditions for a game over are met, the game over screen displays.
     Test Steps:
     1. Start the game.
-    2. Play until the snake collides with the wall or itself.
+    2. Play until the snake collides with the wall.
     3. Verify that the game over screen appears.
     Expected Outcome: When game over conditions are met, the game over screen will display.
 
-Test Case 5: Win Screen
+Test Case 5: Snake Speed
 
-    Test Description: Test that when the game is won, the win screen displays.
+    Test Description: Verify that as point count increases, the speed of the snake's movement increases minimally.
     Test Steps:
-    1. Start the game.
-    2. Play until the game is won by covering the entire screen with the snake.
-    3. Verify that the win screen appears.
-    Expected Outcome: When the game is won, the win screen displays.
+    1. Start the game, noting the speed of the snake.
+    2. Play until a few points are collected.
+    3. Verify that the speed of the snake increases.
+    Expected Outcome: As the amount of points the player has increases, the speed of the snake increases minimally.
 
 
 

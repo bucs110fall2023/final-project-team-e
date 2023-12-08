@@ -20,15 +20,25 @@ class Controller:
     self.start_screen_choice = True
     
   def mainloop(self):
+    '''
+    acts as the main function for the game, using other functions to begin the program
+    args: none
+    return: none
+    '''
     self.startscreenloop()
     self.gameloop()
 
   def startscreenloop(self):
+    '''
+    creates the start screen for the game, providing the ability to choose either options or to start the game
+    args: none
+    return: none
+    '''
     start_screen = True
     self.display.fill("black")
     options_box = pygame.Rect(18, 15, 75, 25)
     Message(self.display, "Options", "white", 50, 30, 25)
-    Message(self.display, "Press any key to start", "white", self.width/2, self.height/2, 40)
+    Message(self.display, "Press Enter to start", "white", self.width/2, self.height/2, 40)
     Message(self.display, "SNAKE GAME", "white", self.width/2, self.height/3, 80)      
     pygame.display.update()
     while start_screen:
@@ -37,7 +47,8 @@ class Controller:
           pygame.quit()
           quit()
         if event.type == pygame.KEYDOWN:
-          start_screen = False
+            if event.key == pygame.K_RETURN:
+                start_screen = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_position = event.pos
             if options_box.collidepoint(mouse_position):
@@ -45,7 +56,11 @@ class Controller:
                 start_screen = False
 
   def options_loop(self):
-    
+    '''
+    creates the options screen with choices for color
+    args: none
+    return: none
+    '''
     hitboxes = {
         "red": pygame.Rect(250, 100, 50, 50),
         "blue": pygame.Rect(375, 175, 50, 50),
@@ -107,8 +122,12 @@ class Controller:
                 self.color_apple = "blue"
 
   def gameloop(self):
-    
-    snake_speed = 15
+    '''
+    holds the content for once the game begins
+    args: none
+    return: none
+    '''
+    snake_speed = 8
     snake_block = 15
     
     x1 = self.width/2
@@ -173,7 +192,7 @@ class Controller:
         for x in snake_List:
             pygame.draw.rect(self.display, self.color_snake, [x[0], x[1], snake_block, snake_block])
         
-        Message(self.display, "Points:" + str(points), "white", 80, 40, 40)
+        Message(self.display, "Points: " + str(points), "white", 80, 40, 40)
 
         pygame.display.update()
         
@@ -186,7 +205,7 @@ class Controller:
             apple_y = random.randrange(snake_block, self.height - snake_block)
             Length_of_snake += 1
             points += 1
-            snake_speed += 1
+            snake_speed += 2
        
         self.clock.tick(snake_speed)
 
@@ -194,6 +213,11 @@ class Controller:
     quit()
     
   def gameoverloop(self):
+    '''
+    creates the game over screen with option to restart
+    args: none
+    return: none
+    '''
     game_over_screen = True
     while game_over_screen:
       for event in pygame.event.get():
@@ -201,10 +225,10 @@ class Controller:
           pygame.quit()
           quit()
         if event.type == pygame.KEYDOWN:
-            if event.type == pygame.KEYDOWN :
+            if event.key == pygame.K_RETURN:
                 self.mainloop()
                 game_over_screen = False
       self.display.fill("black")
       Message(self.display, "GAME OVER", "red", self.width/2, self.height/3, 100)
-      Message(self.display, "Press any Key to Restart", "red", self.width/2, self.height/2, 40)
+      Message(self.display, "Press Enter to Restart", "red", self.width/2, self.height/2, 40)
       pygame.display.update()
