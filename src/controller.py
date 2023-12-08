@@ -3,6 +3,7 @@ import time
 import random
 from .snake import Snake
 from .apple import Apple
+from .message import Message
 
 class Controller:
   
@@ -12,17 +13,24 @@ class Controller:
     self.display = pygame.display.set_mode((self.width,self.height))
     pygame.display.update()
     pygame.display.set_caption("CS 110 Final Project")
-    self.color_snake = "blue" #temporary color choices
+    self.color_snake = "white" # default color
     self.color_apple = "red"
     self.clock = pygame.time.Clock()
     self.game_over_choice = False
     self.start_screen_choice = True
+    
   def mainloop(self):
     self.startscreenloop()
     self.gameloop()
 
   def startscreenloop(self):
     start_screen = True
+    self.display.fill("black")
+    options_box = pygame.Rect(18, 15, 75, 25)
+    Message(self.display, "Options", "white", 50, 30, 25)
+    Message(self.display, "Press any key to start", "white", self.width/2, self.height/2, 40)
+    Message(self.display, "SNAKE GAME", "white", self.width/2, self.height/3, 80)      
+    pygame.display.update()
     while start_screen:
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,23 +38,77 @@ class Controller:
           quit()
         if event.type == pygame.KEYDOWN:
           start_screen = False
-      self.display.fill("black")
-      font_style = pygame.font.SysFont(None, 50)
-      message("Press any key to start", "white", self.width/2, self.height/2)
-      pygame.display.update()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_position = event.pos
+            if options_box.collidepoint(mouse_position):
+                self.options_loop()
+                start_screen = False
 
-  
-  #def menuloop(self):
+  def options_loop(self):
     
-      #event loop
+    hitboxes = {
+        "red": pygame.Rect(250, 100, 50, 50),
+        "blue": pygame.Rect(375, 175, 50, 50),
+        "green": pygame.Rect(250, 175, 50, 50),
+        "purple": pygame.Rect(500, 175, 50, 50),
+        "yellow": pygame.Rect(500, 100, 50, 50),
+        "orange": pygame.Rect(375, 100, 50, 50),
+        "apple": pygame.Rect(250, 400, 70, 50),
+        "orange_fruit": pygame.Rect(375, 400, 70, 50),
+        "blueberry": pygame.Rect(500, 400, 70, 50)
+    }
 
-      #update data
+    self.display.fill("black")
 
-      #redraw
-      
+    pygame.draw.rect(self.display, "red", hitboxes["red"])
+    pygame.draw.rect(self.display, "blue", hitboxes["blue"])
+    pygame.draw.rect(self.display, "green", hitboxes["green"])
+    pygame.draw.rect(self.display, "purple", hitboxes["purple"])
+    pygame.draw.rect(self.display, "yellow", hitboxes["yellow"])
+    pygame.draw.rect(self.display, "orange", hitboxes["orange"])
+    
+    Message(self.display, "Apple", "red", 265, self.height - 175, 35)
+    Message(self.display, "Orange", "orange", self.width/2, self.height - 175, 35)
+    Message(self.display, "Blueberry", "blue", 535, self.height - 175, 35)
+    
+    Message(self.display, "Choose the color of your snake", self.color_snake, self.width/2, self.height - 550, 40)
+    Message(self.display, "Choose the type of fruit", self.color_apple, self.width/2, self.height - 250, 40)
+    Message(self.display, "Press any key to return to start menu", "white", self.width/2, self.height - 50, 40)
+    
+    pygame.display.update()
+    
+    options_screen = True
+    while options_screen:
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          pygame.quit()
+          quit()
+        if event.type == pygame.KEYDOWN:
+          self.mainloop()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_position = event.pos
+            if hitboxes["red"].collidepoint(mouse_position):
+                self.color_snake = "red"
+            if hitboxes["orange"].collidepoint(mouse_position):
+                self.color_snake = "orange"
+            if hitboxes["yellow"].collidepoint(mouse_position):
+                self.color_snake = "yellow"
+            if hitboxes["green"].collidepoint(mouse_position):
+                self.color_snake = "green"
+            if hitboxes["blue"].collidepoint(mouse_position):
+                self.color_snake = "blue"
+            if hitboxes["purple"].collidepoint(mouse_position):
+                self.color_snake = "purple"
+            if hitboxes["orange_fruit"].collidepoint(mouse_position):
+                self.color_apple = "orange"
+            if hitboxes["apple"].collidepoint(mouse_position):
+                self.color_apple = "red"
+            if hitboxes["blueberry"].collidepoint(mouse_position):
+                self.color_apple = "blue"
+
   def gameloop(self):
     
-    snake_speed = 25
+    snake_speed = 15
     snake_block = 15
     
     x1 = self.width/2
@@ -55,6 +117,7 @@ class Controller:
     y1_change = 0
     snake_List = []
     Length_of_snake = 3
+    points = 0
     
     apple_x = random.randrange(snake_block, self.width - snake_block)
     apple_y = random.randrange(snake_block, self.height - snake_block)
@@ -110,6 +173,8 @@ class Controller:
         for x in snake_List:
             pygame.draw.rect(self.display, self.color_snake, [x[0], x[1], snake_block, snake_block])
         
+        Message(self.display, "Points:" + str(points), "white", 80, 40, 40)
+
         pygame.display.update()
         
         snake_box = pygame.Rect(x1, y1, snake_block, snake_block)
@@ -120,6 +185,8 @@ class Controller:
             apple_x = random.randrange(snake_block, self.width - snake_block)
             apple_y = random.randrange(snake_block, self.height - snake_block)
             Length_of_snake += 1
+            points += 1
+            snake_speed += 1
        
         self.clock.tick(snake_speed)
 
@@ -127,16 +194,17 @@ class Controller:
     quit()
     
   def gameoverloop(self):
-    self.display.fill("black")
-    font_style = pygame.font.SysFont(None, 50)
-    def message (msg, msg_color, x, y):
-        mesg = font_style.render(msg, True, msg_color)
-        mesg_rect = mesg.get_rect(center=(x, y))
-        self.display.blit(mesg, mesg_rect)
-    message("Game Over", "red", self.width/2, self.height/2)
-    pygame.display.update()
-    pygame.time.wait(1000)
-    
-    pygame.quit()
-    quit()
-    
+    game_over_screen = True
+    while game_over_screen:
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          pygame.quit()
+          quit()
+        if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN :
+                self.mainloop()
+                game_over_screen = False
+      self.display.fill("black")
+      Message(self.display, "GAME OVER", "red", self.width/2, self.height/3, 100)
+      Message(self.display, "Press any Key to Restart", "red", self.width/2, self.height/2, 40)
+      pygame.display.update()
